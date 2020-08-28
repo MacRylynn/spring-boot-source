@@ -19,13 +19,13 @@ package org.springframework.boot.ansi;
 import org.springframework.util.Assert;
 
 /**
- * {@link AnsiElement} implementation for ANSI 8-bit foreground or background color codes.
+ * {@link AnsiElement} ANSI 8位前景或背景颜色代码的实现。
  *
  * @author Toshiaki Maki
  * @author Phillip Webb
- * @since 2.2.0
  * @see #foreground(int)
  * @see #background(int)
+ * @since 2.2.0
  */
 public final class Ansi8BitColor implements AnsiElement {
 
@@ -34,10 +34,11 @@ public final class Ansi8BitColor implements AnsiElement {
 	private final int code;
 
 	/**
-	 * Create a new {@link Ansi8BitColor} instance.
-	 * @param prefix the prefix escape chars
-	 * @param code color code (must be 0-255)
-	 * @throws IllegalArgumentException if color code is not between 0 and 255.
+	 * 创建一个新的{@link Ansi8BitColor}实例。
+	 *
+	 * @param prefix 前缀转义字符
+	 * @param code   颜色代码（必须为0-255）
+	 * @throws IllegalArgumentException 如果颜色代码不在0到255之间。
 	 */
 	private Ansi8BitColor(String prefix, int code) {
 		Assert.isTrue(code >= 0 && code <= 255, "Code must be between 0 and 255");
@@ -68,18 +69,20 @@ public final class Ansi8BitColor implements AnsiElement {
 	}
 
 	/**
-	 * Return a foreground ANSI color code instance for the given code.
-	 * @param code the color code
-	 * @return an ANSI color code instance
+	 * 返回给定code的前景ANSI颜色码实例。
+	 *
+	 * @param code 颜色码
+	 * @return ANSI颜色码实例
 	 */
 	public static Ansi8BitColor foreground(int code) {
 		return new Ansi8BitColor("38;5;", code);
 	}
 
 	/**
-	 * Return a background ANSI color code instance for the given code.
-	 * @param code the color code
-	 * @return an ANSI color code instance
+	 * 返回给定code的背景ANSI颜色码实例。
+	 *
+	 * @param code 颜色码
+	 * @return an ANSI颜色码实例
 	 */
 	public static Ansi8BitColor background(int code) {
 		return new Ansi8BitColor("48;5;", code);

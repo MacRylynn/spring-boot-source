@@ -21,8 +21,7 @@ import java.util.Locale;
 import org.springframework.util.Assert;
 
 /**
- * Generates ANSI encoded output, automatically attempting to detect if the terminal
- * supports ANSI.
+ * 生成ANSI编码的输出，自动尝试检测终端是否支持ANSI编码.
  *
  * @author Phillip Webb
  * @since 1.0.0
@@ -46,8 +45,9 @@ public abstract class AnsiOutput {
 	private static final String RESET = "0;" + AnsiColor.DEFAULT;
 
 	/**
-	 * Sets if ANSI output is enabled.
-	 * @param enabled if ANSI is enabled, disabled or detected
+	 * 设置是否启用ANSI输出。
+	 *
+	 * @param enabled 如果启用，禁用或检测到ANSI。
 	 */
 	public static void setEnabled(Enabled enabled) {
 		Assert.notNull(enabled, "Enabled must not be null");
@@ -55,26 +55,28 @@ public abstract class AnsiOutput {
 	}
 
 	/**
-	 * Returns if ANSI output is enabled
-	 * @return if ANSI enabled, disabled or detected
+	 * 返回是否启用ANSI输出
+	 *
+	 * @return 如果启用，禁用或检测到ANSI
 	 */
 	public static Enabled getEnabled() {
 		return AnsiOutput.enabled;
 	}
 
 	/**
-	 * Sets if the System.console() is known to be available.
-	 * @param consoleAvailable if the console is known to be available or {@code null} to
-	 * use standard detection logic.
+	 * 设置是否已知System.console（）可用。
+	 *
+	 * @param consoleAvailable 如果已知该控制台可用，或者{@code null} 使用标准检测逻辑。
 	 */
 	public static void setConsoleAvailable(Boolean consoleAvailable) {
 		AnsiOutput.consoleAvailable = consoleAvailable;
 	}
 
 	/**
-	 * Encode a single {@link AnsiElement} if output is enabled.
-	 * @param element the element to encode
-	 * @return the encoded element or an empty string
+	 * 如果启用了输出，则对单个{@link AnsiElement}进行编码。
+	 *
+	 * @param element 要编码的元素
+	 * @return 编码的元素或空字符串
 	 */
 	public static String encode(AnsiElement element) {
 		if (isEnabled()) {
@@ -84,17 +86,16 @@ public abstract class AnsiOutput {
 	}
 
 	/**
-	 * Create a new ANSI string from the specified elements. Any {@link AnsiElement}s will
-	 * be encoded as required.
-	 * @param elements the elements to encode
-	 * @return a string of the encoded elements
+	 * 从指定的元素创建一个新的ANSI字符串。任何{@link AnsiElement}都将根据需要进行编码。
+	 *
+	 * @param elements 要编码的元素
+	 * @return 一串编码的元素
 	 */
 	public static String toString(Object... elements) {
 		StringBuilder sb = new StringBuilder();
 		if (isEnabled()) {
 			buildEnabled(sb, elements);
-		}
-		else {
+		} else {
 			buildDisabled(sb, elements);
 		}
 		return sb.toString();
@@ -109,12 +110,10 @@ public abstract class AnsiOutput {
 				if (!writingAnsi) {
 					sb.append(ENCODE_START);
 					writingAnsi = true;
-				}
-				else {
+				} else {
 					sb.append(ENCODE_JOIN);
 				}
-			}
-			else {
+			} else {
 				if (writingAnsi) {
 					sb.append(ENCODE_END);
 					writingAnsi = false;
@@ -156,31 +155,29 @@ public abstract class AnsiOutput {
 				return false;
 			}
 			return !(OPERATING_SYSTEM_NAME.contains("win"));
-		}
-		catch (Throwable ex) {
+		} catch (Throwable ex) {
 			return false;
 		}
 	}
 
 	/**
-	 * Possible values to pass to {@link AnsiOutput#setEnabled}. Determines when to output
-	 * ANSI escape sequences for coloring application output.
+	 * P可能的值传递给{@link Output＃setEnabled}。确定何时输出用于着色应用程序输出的ANSI转义序列。
 	 */
 	public enum Enabled {
 
 		/**
-		 * Try to detect whether ANSI coloring capabilities are available. The default
-		 * value for {@link AnsiOutput}.
+		 * 尝试检测ANSI着色功能是否可用。
+		 * {@link AnsiOutput}的默认值.
 		 */
 		DETECT,
 
 		/**
-		 * Enable ANSI-colored output.
+		 * 启用ANSI彩色输出。
 		 */
 		ALWAYS,
 
 		/**
-		 * Disable ANSI-colored output.
+		 * 禁用ANSI彩色输出。
 		 */
 		NEVER
 

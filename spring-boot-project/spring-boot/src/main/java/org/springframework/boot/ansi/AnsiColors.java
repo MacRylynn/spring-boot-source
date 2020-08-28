@@ -90,8 +90,8 @@ public final class AnsiColors {
 	private final Map<AnsiElement, LabColor> lookup;
 
 	/**
-	 * Create a new {@link AnsiColors} instance with the specified bit depth.
-	 * @param bitDepth the required bit depth
+	 * 用指定的位深度创建一个新的{@link AnsiColors}实例。
+	 * @param bitDepth 所需的位深度
 	 */
 	public AnsiColors(BitDepth bitDepth) {
 		this.lookup = getLookup(bitDepth);
@@ -109,9 +109,9 @@ public final class AnsiColors {
 	}
 
 	/**
-	 * Find the closest {@link AnsiElement ANSI color} to the given AWT {@link Color}.
-	 * @param color the AWT color
-	 * @return the closest ANSI color
+	 * 找到与给定的AWT {@link颜色}最接近的{@link AnsiElement ANSI颜色}。
+	 * @param color AWT颜色
+	 * @return 最接近的ANSI颜色
 	 */
 	public AnsiElement findClosest(Color color) {
 		return findClosest(new LabColor(color));
@@ -131,7 +131,7 @@ public final class AnsiColors {
 	}
 
 	/**
-	 * Represents a color stored in LAB form.
+	 * 代表以LAB形式存储的颜色。
 	 */
 	private static final class LabColor {
 
@@ -184,7 +184,7 @@ public final class AnsiColors {
 	}
 
 	/**
-	 * Bit depths supported by this class.
+	 * 此类支持的位深度。
 	 */
 	public enum BitDepth {
 

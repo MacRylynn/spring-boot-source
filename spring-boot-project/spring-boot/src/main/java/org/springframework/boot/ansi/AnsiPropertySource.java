@@ -28,16 +28,14 @@ import org.springframework.core.env.PropertySource;
 import org.springframework.util.StringUtils;
 
 /**
- * {@link PropertyResolver} for {@link AnsiStyle}, {@link AnsiColor},
- * {@link AnsiBackground} and {@link Ansi8BitColor} elements. Supports properties of the
- * form {@code AnsiStyle.BOLD}, {@code AnsiColor.RED} or {@code AnsiBackground.GREEN}.
- * Also supports a prefix of {@code Ansi.} which is an aggregation of everything (with
- * background colors prefixed {@code BG_}).
+ * {@link PropertyResolver}用于{@link AnsiStyle}，{@ link AnsiColor}，{@link AnsiBackground}和{@link Ansi8BitColor}元素。
+ * 支持以下形式的属性：{@code AnsiStyle.BOLD}，{@ code AnsiColor.RED}或{@code AnsiBackground.GREEN}。
+ * 还支持{@code Ansi}的前缀，它是所有内容的集合（带有背景颜色为{@code BG_}前缀）。
  * <p>
- * ANSI 8-bit color codes can be used with {@code AnsiColor} and {@code AnsiBackground}.
- * For example, {@code AnsiColor.208} will render orange text.
+ * ANSI 8位颜色代码可用于{@code AnsiColor} 和{@code AnsiBackground}.
+ * 比如, {@code AnsiColor.208} 将呈现橙色文本。
  * <a href="https://en.wikipedia.org/wiki/ANSI_escape_code">Wikipedia</a> has a complete
- * list of the 8-bit color codes that can be used.
+ * 可以使用的8位颜色代码列表。
  *
  * @author Phillip Webb
  * @author Toshiaki Maki
@@ -64,7 +62,8 @@ public class AnsiPropertySource extends PropertySource<AnsiElement> {
 
 	/**
 	 * Create a new {@link AnsiPropertySource} instance.
-	 * @param name the name of the property source
+	 *
+	 * @param name   the name of the property source
 	 * @param encode if the output should be encoded
 	 */
 	public AnsiPropertySource(String name, boolean encode) {
@@ -90,7 +89,7 @@ public class AnsiPropertySource extends PropertySource<AnsiElement> {
 	}
 
 	/**
-	 * Mapping between a name and the pseudo property source.
+	 * 名称与伪属性源之间的映射。
 	 */
 	private abstract static class Mapping {
 
@@ -149,8 +148,7 @@ public class AnsiPropertySource extends PropertySource<AnsiElement> {
 			if (containsOnlyDigits(postfix)) {
 				try {
 					return this.factory.apply(Integer.parseInt(postfix));
-				}
-				catch (IllegalArgumentException ex) {
+				} catch (IllegalArgumentException ex) {
 				}
 			}
 			return null;
