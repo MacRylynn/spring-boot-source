@@ -43,7 +43,7 @@ import org.springframework.core.env.StandardEnvironment;
 import org.springframework.util.Assert;
 
 /**
- * Register a {@link SpringApplicationAdminMXBean} implementation to the platform
+ * 将{@link SpringApplicationAdminMXBean}实现注册到平台
  * {@link MBeanServer}.
  *
  * @author Stephane Nicoll

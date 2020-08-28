@@ -16,5 +16,9 @@
 
 /**
  * Administration support for Spring Boot applications.
+ * package-info.java作用：
+ * 1. 为标注在包上Annotation提供便利；
+ * 2. 声明包的私有类和常量；
+ * 3. 提供包的整体注释说明。
  */
 package org.springframework.boot.admin;
